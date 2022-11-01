@@ -1,0 +1,23 @@
+/*What are average, max, and min values in the data?*/
+
+SELECT title, AVG (overseas) AS avg_overseas FROM topmovies GROUP BY title HAVING avg_overseas > 750 ORDER BY avg_overseas ASC;
+
+/* What about those numbers per category in the data (using HAVING)? */
+
+SELECT year, SUM(Worldwide) AS total_money FROM topmovies
+    GROUP BY year
+    HAVING total_money > 5000 ORDER BY total_money DESC;
+    
+/* What ways are there to group the data values that don’t exist yet (using CASE)? */
+
+SELECT title, 
+CASE 
+        WHEN worldwide >800 THEN "Global Phenomenan"
+        WHEN worldwide >600 THEN "Worldwide Smash"
+        ELSE "Dark Horse"
+    END as "Movie Successes"
+FROM topmovies;
+
+/* What interesting ways are there to filter the data (using AND/OR)? */
+
+SELECT * FROM topmovies WHERE Studio = 'WB' AND Worldwide >= 1000;
